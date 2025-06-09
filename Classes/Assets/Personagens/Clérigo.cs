@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Personagens
+public class Personagem
 
 {
 
@@ -33,7 +33,7 @@ public class Personagens
 
         public void Atacar(Personagem inimigo)
         {
-            Debug.Log($"{Clérigo} ataca {inimigo.nome}!");
+            Debug.Log($"{_nome} ataca {Inimigo._nome}!");
             inimigo.ReceberDano(_ataque);
         }
     }
