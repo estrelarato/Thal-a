@@ -1,14 +1,27 @@
 using UnityEngine;
 
-public class Personagem
+public class Personagem : MonoBehaviour
 {
-        private string _nome;
-        private int _ataque;
-        private int _defesa;
-        private int _dano;
-        private int _curaDivina;
-        private int _vidaMaxima;
-        private int _vidaMinima;
-        private int _vidaAtual;
+    // Atributos básicos detodo personagem
+    public string nome;
+    public int vidaMaxima;
+    public int vidaAtual;
+    public int defesa;
+    public int ataque;
 
+    // Método para receber dano
+    public void ReceberDano(int dano)
+    {
+        int danoReal = Mathf.Max(dano - defesa, 0);
+        vidaAtual -= danoReal;
+        vidaAtual = Mathf.Max(vidaAtual, 0);
+        Debug.Log($"{nome} recebeu {danoReal} de dano. Vida restante: {vidaAtual}");
+    }
+
+    // Método para atacar outro personagem
+    public void Atacar(Personagem inimigo)
+    {
+        Debug.Log($"{nome} ataca {inimigo.nome}!");
+        inimigo.ReceberDano(ataque);
+    }
 }

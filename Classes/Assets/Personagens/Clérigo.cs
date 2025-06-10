@@ -1,40 +1,21 @@
-using UnityEngine;
-
-
-public class Personagem
-
+public class Clerigo : Personagem
 {
-
-    public class Clérigo
+    // Construtor do Clérigo
+    public Clerigo()
     {
+        nome = "Clérigo";
+        vidaMaxima = 75;
+        vidaAtual = vidaMaxima;
+        defesa = 10;
+        ataque = 15; 
+        
+    Debug.Log($"{nome} entrou no jogo com {vidaAtual} de vida.");
+    }
 
-        private string _nome;
-        private int _ataque;
-        private int _defesa;
-        private int _dano;
-        private int _curaDivina;
-        private int _vidaMaxima;
-        private int _vidaMinima;
-        private int _vidaAtual;
-
-        void Start()
-        {
-            _vidaAtual = _vidaMaxima;
-            Debug.Log($"{_nome} entrou no jogo com {_vidaAtual} de vida.");
-        }
-
-        public void ReceberDano(int dano)
-        {
-            int danoReal = Mathf.Max(dano - _defesa, 0);
-            _vidaAtual -= danoReal;
-            _vidaAtual = Mathf.Max(_vidaAtual, 0);
-            Debug.Log($"{_nome} recebeu {danoReal} de dano. Vida restante: {_vidaAtual}");
-        }
-
-        public void Atacar(Personagem inimigo)
-        {
-            Debug.Log($"{_nome} ataca {Inimigo._nome}!");
-            inimigo.ReceberDano(_ataque);
-        }
+    // Método especial de cura (exclusivo do Clérigo)
+    public void Curar(Personagem alvo)
+    {
+        alvo.vidaAtual = Mathf.Min(alvo.vidaAtual + 20, alvo.vidaMaxima);
+        Debug.Log($"{nome} curou {alvo.nome}! Vida agora: {alvo.vidaAtual}");
     }
 }
